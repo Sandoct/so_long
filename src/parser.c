@@ -6,7 +6,7 @@
 /*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:47:54 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/05/22 15:38:41 by gpouzet          ###   ########.fr       */
+/*   Updated: 2023/05/22 17:04:01 by gpouzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/libft.h"
@@ -38,8 +38,12 @@ static int	tokens(char c)
 		collectible ++;
 	else if (start > 1)
 		return (ft_putstr_fd("Error where do i start\n", 2));
+	else if (start < 1)
+		return (ft_putstr_fd("Error no start\n", 2));
 	else if (exit > 1)
 		return (ft_putstr_fd("Error to many exit\n", 2));
+	else if (exit < 1)
+		return (ft_putstr_fd("Error no exit\n", 2));
 	else if (collectible < 1)
 		return (ft_putstr_fd("Error not enough collectible\n", 2));
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:53:01 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/05/22 15:37:10 by gpouzet          ###   ########.fr       */
+/*   Updated: 2023/05/22 17:05:20 by gpouzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/libft.h"
@@ -40,7 +40,7 @@ static int	mlx_start(t_game *game)
 		mlx_end(game);
 		return (1);
 	}
-	set_addr(&game->frame.img);
+	set_addr(&game->frame);
 	if (game->frame.data.addr == NULL)
 	{
 		mlx_end(game);
