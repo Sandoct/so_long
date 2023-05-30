@@ -6,7 +6,7 @@
 /*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:53:01 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/05/22 17:05:20 by gpouzet          ###   ########.fr       */
+/*   Updated: 2023/05/30 16:37:24 by gpouzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/libft.h"
@@ -43,8 +43,8 @@ static int	mlx_start(t_game *game)
 	set_addr(&game->frame);
 	if (game->frame.data.addr == NULL)
 	{
+		mlx_destroy_image(game->mlx, game->frame.img);
 		mlx_end(game);
-		free(game->frame.img);
 		return (1);
 	}
 	return (0);
@@ -61,7 +61,13 @@ int	so_long(char *file)
 	game.map_height = ft_tabstrlen(game.map);
 	if (mlx_start(&game))
 		return (1);
-	set_texture(&game);
+	if (set_texture(&game))
+	{
+		freetab(game.map);
+		mlx_destroy_image(game.mlx, game.frame.img);
+		mlx_end(&game);
+		return (1);
+	}
 	render_map(&game);
 	mlx_put_image_to_window(game.mlx, game.win, game.frame.img, 0, 0);
 	mlx_hook(game.win, 17, 0, close_game, &game);

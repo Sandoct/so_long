@@ -6,7 +6,7 @@
 /*   By: gpouzet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:47:54 by gpouzet           #+#    #+#             */
-/*   Updated: 2023/05/22 17:04:56 by gpouzet          ###   ########.fr       */
+/*   Updated: 2023/05/24 16:37:15 by gpouzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/libft.h"
@@ -40,10 +40,8 @@ static int	tokens(char c)
 		return (ft_putstr_fd("Error where do i start\n", 2));
 	else if (start < 1)
 		return (ft_putstr_fd("Error no start\n", 2));
-	else if (exit > 1)
-		return (ft_putstr_fd("Error to many exit\n", 2));
-	else if (exit < 1)
-		return (ft_putstr_fd("Error no exit\n", 2));
+	else if (exit != 1)
+		return (ft_putstr_fd("Error invalid number of exit\n", 2));
 	else if (collectible < 1)
 		return (ft_putstr_fd("Error not enough collectible\n", 2));
 	if (c == '1')
@@ -109,6 +107,8 @@ int	parser(char **map)
 	int		height;
 	t_pc	pc;
 
+	if (map[0] == NULL)
+		return (1);
 	width = ft_strlen(map[0]);
 	height = ft_tabstrlen(map);
 	if (height < 3 || width < 3)
